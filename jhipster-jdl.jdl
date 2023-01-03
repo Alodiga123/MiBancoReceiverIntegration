@@ -1,0 +1,22 @@
+entity Operations {
+	CedulaBeneficiario String required maxlength(16),
+    TelefonoEmisor String required maxlength(14),
+    TelefonoBeneficiario String required maxlength(14),
+    Monto String required maxlength(20),
+    BancoEmisor String required maxlength(4),
+    Concepto String required maxlength(255),
+    Referencia String required maxlength(15),
+    FechaHora String required maxlength(30)
+}
+// Set pagination options
+paginate Operations with infinite-scroll
+paginate Operations with pagination
+
+// Use Data Transfer Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl except Operations
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
