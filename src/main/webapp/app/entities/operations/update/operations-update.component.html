@@ -1,0 +1,277 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-operations-heading"
+        data-cy="OperationsCreateUpdateHeading"
+        jhiTranslate="myBancoReceiverIntegrationApp.operations.home.createOrEditLabel"
+      >
+        Crear o editar Operations
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="myBancoReceiverIntegrationApp.operations.cedulaBeneficiario"
+            for="field_cedulaBeneficiario"
+            >Cedula Beneficiario</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="cedulaBeneficiario"
+            id="field_cedulaBeneficiario"
+            data-cy="cedulaBeneficiario"
+            formControlName="cedulaBeneficiario"
+          />
+          <div
+            *ngIf="
+              editForm.get('cedulaBeneficiario')!.invalid &&
+              (editForm.get('cedulaBeneficiario')!.dirty || editForm.get('cedulaBeneficiario')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('cedulaBeneficiario')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Este campo es obligatorio.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('cedulaBeneficiario')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 16 }"
+            >
+              Este campo no puede superar más de 16 caracteres.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="myBancoReceiverIntegrationApp.operations.telefonoEmisor" for="field_telefonoEmisor"
+            >Telefono Emisor</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="telefonoEmisor"
+            id="field_telefonoEmisor"
+            data-cy="telefonoEmisor"
+            formControlName="telefonoEmisor"
+          />
+          <div
+            *ngIf="
+              editForm.get('telefonoEmisor')!.invalid && (editForm.get('telefonoEmisor')!.dirty || editForm.get('telefonoEmisor')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('telefonoEmisor')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Este campo es obligatorio.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('telefonoEmisor')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 14 }"
+            >
+              Este campo no puede superar más de 14 caracteres.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="myBancoReceiverIntegrationApp.operations.telefonoBeneficiario"
+            for="field_telefonoBeneficiario"
+            >Telefono Beneficiario</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="telefonoBeneficiario"
+            id="field_telefonoBeneficiario"
+            data-cy="telefonoBeneficiario"
+            formControlName="telefonoBeneficiario"
+          />
+          <div
+            *ngIf="
+              editForm.get('telefonoBeneficiario')!.invalid &&
+              (editForm.get('telefonoBeneficiario')!.dirty || editForm.get('telefonoBeneficiario')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('telefonoBeneficiario')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Este campo es obligatorio.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('telefonoBeneficiario')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 14 }"
+            >
+              Este campo no puede superar más de 14 caracteres.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="myBancoReceiverIntegrationApp.operations.monto" for="field_monto">Monto</label>
+          <input type="text" class="form-control" name="monto" id="field_monto" data-cy="monto" formControlName="monto" />
+          <div *ngIf="editForm.get('monto')!.invalid && (editForm.get('monto')!.dirty || editForm.get('monto')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('monto')?.errors?.required" jhiTranslate="entity.validation.required">
+              Este campo es obligatorio.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('monto')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 20 }"
+            >
+              Este campo no puede superar más de 20 caracteres.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="myBancoReceiverIntegrationApp.operations.bancoEmisor" for="field_bancoEmisor"
+            >Banco Emisor</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="bancoEmisor"
+            id="field_bancoEmisor"
+            data-cy="bancoEmisor"
+            formControlName="bancoEmisor"
+          />
+          <div *ngIf="editForm.get('bancoEmisor')!.invalid && (editForm.get('bancoEmisor')!.dirty || editForm.get('bancoEmisor')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('bancoEmisor')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Este campo es obligatorio.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('bancoEmisor')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 4 }"
+            >
+              Este campo no puede superar más de 4 caracteres.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="myBancoReceiverIntegrationApp.operations.concepto" for="field_concepto">Concepto</label>
+          <input type="text" class="form-control" name="concepto" id="field_concepto" data-cy="concepto" formControlName="concepto" />
+          <div *ngIf="editForm.get('concepto')!.invalid && (editForm.get('concepto')!.dirty || editForm.get('concepto')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('concepto')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Este campo es obligatorio.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('concepto')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 255 }"
+            >
+              Este campo no puede superar más de 255 caracteres.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="myBancoReceiverIntegrationApp.operations.referencia" for="field_referencia"
+            >Referencia</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="referencia"
+            id="field_referencia"
+            data-cy="referencia"
+            formControlName="referencia"
+          />
+          <div *ngIf="editForm.get('referencia')!.invalid && (editForm.get('referencia')!.dirty || editForm.get('referencia')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('referencia')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Este campo es obligatorio.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('referencia')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 15 }"
+            >
+              Este campo no puede superar más de 15 caracteres.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="myBancoReceiverIntegrationApp.operations.fechaHora" for="field_fechaHora"
+            >Fecha Hora</label
+          >
+          <input type="text" class="form-control" name="fechaHora" id="field_fechaHora" data-cy="fechaHora" formControlName="fechaHora" />
+          <div *ngIf="editForm.get('fechaHora')!.invalid && (editForm.get('fechaHora')!.dirty || editForm.get('fechaHora')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('fechaHora')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Este campo es obligatorio.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('fechaHora')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 30 }"
+            >
+              Este campo no puede superar más de 30 caracteres.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

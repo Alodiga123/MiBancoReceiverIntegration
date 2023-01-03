@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="operations">
+      <h2 data-cy="operationsDetailsHeading">
+        <span jhiTranslate="myBancoReceiverIntegrationApp.operations.detail.title">Operations</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ operations.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="myBancoReceiverIntegrationApp.operations.cedulaBeneficiario">Cedula Beneficiario</span></dt>
+        <dd>
+          <span>{{ operations.cedulaBeneficiario }}</span>
+        </dd>
+        <dt><span jhiTranslate="myBancoReceiverIntegrationApp.operations.telefonoEmisor">Telefono Emisor</span></dt>
+        <dd>
+          <span>{{ operations.telefonoEmisor }}</span>
+        </dd>
+        <dt><span jhiTranslate="myBancoReceiverIntegrationApp.operations.telefonoBeneficiario">Telefono Beneficiario</span></dt>
+        <dd>
+          <span>{{ operations.telefonoBeneficiario }}</span>
+        </dd>
+        <dt><span jhiTranslate="myBancoReceiverIntegrationApp.operations.monto">Monto</span></dt>
+        <dd>
+          <span>{{ operations.monto }}</span>
+        </dd>
+        <dt><span jhiTranslate="myBancoReceiverIntegrationApp.operations.bancoEmisor">Banco Emisor</span></dt>
+        <dd>
+          <span>{{ operations.bancoEmisor }}</span>
+        </dd>
+        <dt><span jhiTranslate="myBancoReceiverIntegrationApp.operations.concepto">Concepto</span></dt>
+        <dd>
+          <span>{{ operations.concepto }}</span>
+        </dd>
+        <dt><span jhiTranslate="myBancoReceiverIntegrationApp.operations.referencia">Referencia</span></dt>
+        <dd>
+          <span>{{ operations.referencia }}</span>
+        </dd>
+        <dt><span jhiTranslate="myBancoReceiverIntegrationApp.operations.fechaHora">Fecha Hora</span></dt>
+        <dd>
+          <span>{{ operations.fechaHora }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/operations', operations.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

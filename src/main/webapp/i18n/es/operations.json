@@ -1,0 +1,31 @@
+{
+  "myBancoReceiverIntegrationApp": {
+    "operations": {
+      "home": {
+        "title": "Operations",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Operations",
+        "createOrEditLabel": "Crear o editar Operations",
+        "notFound": "Ningún Operations encontrado"
+      },
+      "created": "Un nuevo Operations ha sido creado con el identificador {{ param }}",
+      "updated": "Un Operations ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Operations ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Operations {{ id }}?"
+      },
+      "detail": {
+        "title": "Operations"
+      },
+      "id": "ID",
+      "cedulaBeneficiario": "Cedula Beneficiario",
+      "telefonoEmisor": "Telefono Emisor",
+      "telefonoBeneficiario": "Telefono Beneficiario",
+      "monto": "Monto",
+      "bancoEmisor": "Banco Emisor",
+      "concepto": "Concepto",
+      "referencia": "Referencia",
+      "fechaHora": "Fecha Hora"
+    }
+  }
+}
