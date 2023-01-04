@@ -9,7 +9,7 @@
     <artifactId>my-banco-receiver-integration</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>My Banco Receiver Integration</name>
+    <name>MiBancoReceiverIntegration</name>
     <description>Description for myBancoReceiverIntegration</description>
 
     <repositories>

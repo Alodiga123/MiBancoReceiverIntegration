@@ -3,6 +3,7 @@ package com.mycompany.myapp.web.rest;
 import com.mycompany.myapp.domain.Operations;
 import com.mycompany.myapp.repository.OperationsRepository;
 import com.mycompany.myapp.response.Response;
+import com.mycompany.myapp.service.dto.OperationDTO;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -55,19 +56,25 @@ public class OperationsResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/operations")
-    public ResponseEntity<Response> createOperations(@Valid @RequestBody Operations operations) throws URISyntaxException {
+    public ResponseEntity<Response> createOperations(@RequestBody OperationDTO operations) throws URISyntaxException {
         log.debug("REST request to save Operations : {}", operations);
-        if (operations.getId() != null) {
-            throw new BadRequestAlertException("A new operations cannot already have an ID", ENTITY_NAME, "idexists");
-        }
-        Operations result = operationsRepository.save(operations);
         Response response = new Response();
-        if (result != null) {
-            response.setSuccess(true);
-        } else {
-            response.setSuccess(false);
+        boolean valid = Validar(operations);
+        if (!valid) {
+            return ResponseEntity.badRequest().body(response);
         }
-
+        Operations operation = new Operations();
+        operation.setCedulaBeneficiario(operations.getCedulaBeneficiario());
+        operation.setBancoEmisor(operations.getCedulaBeneficiario());
+        operation.setTelefonoEmisor(operations.getTelefonoEmisor());
+        operation.setTelefonoBeneficiario(operations.getTelefonoBeneficiario());
+        operation.setMonto(operations.getMonto());
+        operation.setBancoEmisor(operations.getBancoEmisor());
+        operation.setConcepto(operations.getConcepto());
+        operation.setReferencia(operations.getReferencia());
+        operation.setFechaHora(operations.getFechaHora());
+        Operations result = operationsRepository.save(operation);
+        response.setSuccess(true);
         return ResponseEntity.ok().body(response);
     }
 
@@ -212,5 +219,30 @@ public class OperationsResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    private boolean Validar(OperationDTO operations) {
+        if (
+            operations.getCedulaBeneficiario() == null ||
+            " ".equals(operations.getCedulaBeneficiario()) ||
+            operations.getTelefonoEmisor() == null ||
+            " ".equals(operations.getTelefonoEmisor()) ||
+            operations.getTelefonoBeneficiario() == null ||
+            " ".equals(operations.getTelefonoBeneficiario()) ||
+            operations.getMonto() == null ||
+            " ".equals(operations.getMonto()) ||
+            operations.getBancoEmisor() == null ||
+            " ".equals(operations.getBancoEmisor()) ||
+            operations.getConcepto() == null ||
+            " ".equals(operations.getConcepto()) ||
+            operations.getReferencia() == null ||
+            " ".equals(operations.getReferencia()) ||
+            operations.getFechaHora() == null ||
+            " ".equals(operations.getFechaHora())
+        ) {
+            return false;
+        }
+
+        return true;
     }
 }
